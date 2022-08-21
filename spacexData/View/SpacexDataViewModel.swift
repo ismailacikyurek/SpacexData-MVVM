@@ -10,11 +10,9 @@ import UIKit
 import Alamofire
 import Kingfisher
 
-
 protocol DashboardViewModelProtocol {
     func initialize()
     func setUpDelegate(_ viewController: SpacexDataViewController)
-   
 }
 
 protocol DashboardViewModelOutputProtocol {
@@ -24,12 +22,10 @@ protocol DashboardViewModelOutputProtocol {
 class DashboardViewModel:NSObject {
     private let service: SpacexDataServiceProtokol = SpacexDataService()
     var delegate: DashboardViewModelOutputProtocol?
-
     func initialize() {
         SpacexDataServicee()
     }
-    
-     func SpacexDataServicee() {
+    func SpacexDataServicee() {
          let url = "https://api.spacexdata.com/v2/launches"
         service.fethAllPosts(url: url) { [weak self] model in
             self?.delegate?.showData(content: model)
@@ -39,14 +35,10 @@ class DashboardViewModel:NSObject {
         }
     }
 }
-
 extension DashboardViewModel: DashboardViewModelProtocol {
-
-    
-    func setUpDelegate(_ viewController: SpacexDataViewController) {
+func setUpDelegate(_ viewController: SpacexDataViewController) {
         delegate = viewController
     }
-    
 }
 
 

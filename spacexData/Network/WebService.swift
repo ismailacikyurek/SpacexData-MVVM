@@ -13,13 +13,13 @@ import Alamofire
 
 //MARK: Protocol
 protocol SpacexDataServiceProtokol {
-    func fethAllPosts(url:String,onSuccess: @escaping ([SpacexDataModel]) -> Void, onFail: @escaping (String?) -> Void)
+    func fethAllPosts<T : Codable>(url:String,onSuccess: @escaping ([T]) -> Void, onFail: @escaping (String?) -> Void)
 }
 
 //MARK: Get Datas
 struct SpacexDataService: SpacexDataServiceProtokol {
-    func fethAllPosts(url: String, onSuccess: @escaping ([SpacexDataModel]) -> Void, onFail: @escaping (String?) -> Void) {
-        AF.request(url, method: .get).validate().responseDecodable(of: [SpacexDataModel].self) { (response) in
+    func fethAllPosts<T>(url: String, onSuccess: @escaping ([T]) -> Void, onFail: @escaping (String?) -> Void) where T : Decodable, T : Encodable {
+        AF.request(url, method: .get).validate().responseDecodable(of: [T].self) { (response) in
             guard let items =  response.value else {
                 onFail(response.debugDescription)
                 return
@@ -28,6 +28,8 @@ struct SpacexDataService: SpacexDataServiceProtokol {
             onSuccess(items)
         }
     }
+    
+   
     
     
 }

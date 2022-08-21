@@ -10,9 +10,6 @@ import Alamofire
 import Kingfisher
 
 class SpacexDataViewController: UIViewController {
-    
-   
-  
     @IBOutlet weak var Switch: UISwitch!
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var tableView: UITableView!
@@ -54,8 +51,6 @@ class SpacexDataViewController: UIViewController {
     
 }
 }
-
-
 extension SpacexDataViewController: DashboardViewModelOutputProtocol {
     func showData(content: [SpacexDataModel]) {
         model = content
@@ -64,7 +59,6 @@ extension SpacexDataViewController: DashboardViewModelOutputProtocol {
 }
 
 extension SpacexDataViewController : UITableViewDelegate,UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let model = self.model else { return 0 }
         return model.count
@@ -84,7 +78,6 @@ extension SpacexDataViewController : UITableViewDelegate,UITableViewDataSource {
           }
            return cell
          }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if Switch.isOn {
             dataToBeSent = filtreliModel![indexPath.row]

@@ -12,18 +12,14 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var PhotoimageView: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
-    
     var year : Int?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-      
-    }
+      }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     func configure(content: [SpacexDataModel]) {
         lblTitle.text = content[0].mission_name
@@ -33,7 +29,6 @@ class TableViewCell: UITableViewCell {
         PhotoimageView.kf.setImage(with:URL(string: urlStr))
         PhotoimageView.layer.borderWidth = 1
         PhotoimageView.layer.cornerRadius = 12
-        
-    }
+        }
 
 }
